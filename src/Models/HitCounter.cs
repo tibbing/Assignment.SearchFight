@@ -46,12 +46,12 @@ namespace Assignment.SearchFight.Models
 					.ToDelimitedString("\t") + "\n\n"
 			);
 
-			var providers = searchProviders
+			var list = searchProviders
 				.Select(p => p.Name)
 				.ToList();
-			providers.Add("Total");
+			list.Add("Total");
 
- 			foreach (var provider in providers)
+ 			foreach (var provider in list)
 			{
 				var winner = results
 					.Aggregate((i1, i2) => i1.Results[provider] > i2.Results[provider] ? i1 : i2)
@@ -66,7 +66,7 @@ namespace Assignment.SearchFight.Models
 		public async Task<List<KeywordResults>> SearchKeywords(string keywords)
 		{
 			string[] parts;
-			if (string.IsNullOrWhiteSpace((keywords)))
+			if (string.IsNullOrWhiteSpace(keywords))
 			{
 				parts = new string[0];
 			}
