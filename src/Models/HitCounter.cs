@@ -16,6 +16,10 @@ namespace Assignment.SearchFight.Models
 		{
 			searchProviders = providers;
 		}
+		public HitCounter(ISearchProvider provider)
+		{
+			searchProviders = new List<ISearchProvider>() { provider };
+		}
 
 		public void PrintResult(List<KeywordResults> results)
 		{
