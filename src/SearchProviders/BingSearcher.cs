@@ -10,7 +10,8 @@ namespace Assignment.SearchFight.SearchProviders
 			BaseUrl = "https://www.bing.com/search";
 		}
 
-		public override async Task<long> HitsOfKeyword(string keyword)
+		public override string Name => "Bing";
+		public override async Task<long> GetHitCount(string keyword)
 		{
 			var nameValueCollection = new NameValueCollection
 			{
@@ -21,5 +22,6 @@ namespace Assignment.SearchFight.SearchProviders
 			var html = await GetHtml(nameValueCollection);
 			return TryParseHtml(html, @"\<span class=\""sb_count\"">(.*) results\<\/span\>");
 		}
+
 	}
 }

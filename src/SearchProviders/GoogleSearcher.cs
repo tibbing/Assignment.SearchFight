@@ -9,7 +9,8 @@ namespace Assignment.SearchFight.SearchProviders
 		{
 			BaseUrl = "https://www.google.com/search";
 		}
-		public override async Task<long> HitsOfKeyword(string keyword)
+		public override string Name => "Google";
+		public override async Task<long> GetHitCount(string keyword)
 		{
 			var nameValueCollection = new NameValueCollection
 			{

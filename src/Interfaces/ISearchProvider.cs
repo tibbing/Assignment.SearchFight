@@ -4,6 +4,7 @@ namespace Assignment.SearchFight.Interfaces
 {
 	public interface ISearchProvider
 	{
-		Task<long> HitsOfKeyword(string keyword);
+		Task<long> GetHitCount(string keyword);
+		string Name { get; }
 	}
 }

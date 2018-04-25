@@ -10,7 +10,8 @@ namespace Assignment.SearchFight.SearchProviders
 {
 	public abstract class SearchProviderBase : ISearchProvider
 	{
-		public abstract Task<long> HitsOfKeyword(string keyword);
+		public abstract Task<long> GetHitCount(string keyword);
+		public abstract string Name { get; }
 		protected string BaseUrl { get; set; }
 
 		protected long TryParseHtml(string html, string pattern)
@@ -18,7 +19,8 @@ namespace Assignment.SearchFight.SearchProviders
 			var matches = Regex.Matches(html, pattern, RegexOptions.IgnoreCase);
 			if (!matches.Any())
 			{
-				throw new Exception($"Invalid result data returned (no matches for pattern '{pattern}')");
+				return 0;
+				//throw new Exception($"Invalid result data returned (no matches for pattern '{pattern}')");
 			}
 
 			var resultGroup = matches.First().Groups[1];
