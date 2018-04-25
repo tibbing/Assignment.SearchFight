@@ -17,7 +17,7 @@ namespace Assignment.SearchFight.SearchProviders
 		protected long TryParseHtml(string html, string pattern)
 		{
 			var matches = Regex.Matches(html, pattern, RegexOptions.IgnoreCase);
-			if (!matches.Any())
+			if (!matches.Any() || matches.First().Groups.Count < 2)
 			{
 				return 0;
 			}

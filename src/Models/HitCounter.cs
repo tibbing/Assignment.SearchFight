@@ -43,8 +43,24 @@ namespace Assignment.SearchFight.Models
 			Console.WriteLine(
 				"Total\t" + results
 					.Select(p => p.Results["Total"].ToString().PadRight(padding))
-					.ToDelimitedString("\t") + "\n"
+					.ToDelimitedString("\t") + "\n\n"
 			);
+
+			var providers = searchProviders
+				.Select(p => p.Name)
+				.ToList();
+			providers.Add("Total");
+
+ 			foreach (var provider in providers)
+			{
+				var winner = results
+					.Aggregate((i1, i2) => i1.Results[provider] > i2.Results[provider] ? i1 : i2)
+					.Keyword;
+
+				Console.WriteLine($"{provider} winner: {winner}");
+			}
+
+			Console.WriteLine();
 		}
 
 		public async Task<List<KeywordResults>> SearchKeywords(string keywords)
