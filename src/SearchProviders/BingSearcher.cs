@@ -5,12 +5,8 @@ namespace Assignment.SearchFight.SearchProviders
 {
 	public class BingSearcher : SearchProviderBase
 	{
-		public BingSearcher()
-		{
-			BaseUrl = "https://www.bing.com/search";
-		}
-
 		public override string Name => "Bing";
+		public override string BaseUrl => "https://www.bing.com/search";
 		public override async Task<long> GetHitCount(string keyword)
 		{
 			var nameValueCollection = new NameValueCollection
